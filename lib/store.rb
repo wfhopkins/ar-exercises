@@ -1,23 +1,6 @@
 class Store < ActiveRecord::Base
+  has_many :employees
   
-  store = Store.create(
-  name: "Burnaby",
-  annual_revenue: 300000,
-  mens_apparel: true,
-  womens_apparel: true
-  )
-
-  store = Store.create(
-  name: "Richmond",
-  annual_revenue: 1260000,
-  mens_apparel: false,
-  womens_apparel: true
-  )
-
-  store = Store.create(
-  name: "Gastown",
-  annual_revenue: 190000,
-  mens_apparel: true,
-  womens_apparel: false
-  )
+  validates :name, length: { minimum: 3 }
+  validates :annual_revenue, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 end
